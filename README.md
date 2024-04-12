@@ -1,8 +1,40 @@
-# Meteor Addon Template
+lol ai readme go brrrr
+# Auto Anvil Dupe Module Instructions for GoldenDupes' Plugin
 
-A template to allow easy usage of the Meteor Addon API.
+Welcome to the Auto Anvil Dupe Module, a specially designed solution for duplicating items on the Anarchy.CX server within the GoldenDupes' plugin environment! Follow these steps carefully to achieve the best results:
 
-### How to use:  
-- Clone this project
-- Use this template to create new modules/commands
-- Run the mod with Meteor.
+## How to Use
+
+1. **Prepare Your Hotbar:**
+   - Place the **item you wish to duplicate in the first slot of your hotbar**.
+   
+2. **Stock Up on Anvils:**
+   - **Ensure you have anvils placed in any other slot** within your hotbar. These will be essential for the duplication process.
+
+3. **Set Duplication Count:**
+   - **Input the number of times** you desire to duplicate your selected item. This customization step is crucial for controlling the quantity of your end result.
+
+4. **Activate the Module:**
+   - With your preparations complete, **activate the module** to initiate the duplication process. Watch as your inventory expands with duplicated items!
+
+## Additional Information
+
+This module is crafted to leverage gameplay mechanics unique to the GoldenDupes plugin and Anarchy.CX server.
+
+## Decompiling Binary with Recaf
+
+If you're unsure about the legitimacy of the module, below you'll find instructions on viewing the source code of compiled binaries
+
+### Steps to Decompile:
+
+1. **Acquire Recaf:** Download the most recent iteration of Recaf from their [GitHub repository](https://github.com/Col-E/Recaf).
+
+2. **Launch Recaf:** Open Recaf on your desktop.
+
+3. **Import the Binary:** Through `File > Open`, locate and select the binary file for the module.
+
+4. **Explore the Contents:** Post-load, you gain access to peruse the module's structured classes and resources, enabling code review and modifications.
+
+---
+
+Maximize your Anarchy.CX experience with confidence and creativity!
