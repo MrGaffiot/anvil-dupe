@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "auto-anvil-dupe",
+  "version": "${version}",
+  "name": "Auto Anvil Dupe",
+  "description": "Allows players to duplicate items automatically on Anarchy.cx",
+  "authors": [
+    "Shortcoming"
+  ],
+  "contact": {
+    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
+  },
+  "icon": "assets/anvilduper/Anvil.png",
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [
+      "cx.anarchy.AnvilDupe.Addon"
+    ]
+  },
+  "mixins": [
+    "AnvilDupe.mixins.json"
+  ],
+  "custom": {
+    "meteor-client:color": "225,25,25"
+  },
+  "depends": {
+    "java": ">=17",
+    "minecraft": ">=${mc_version}",
+    "meteor-client": "*"
+  }
+}

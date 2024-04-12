@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "cx.anarchy.AnvilDupe.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
