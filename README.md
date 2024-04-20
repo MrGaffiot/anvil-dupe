@@ -1,9 +1,8 @@
-lol ai readme go brrrr
 # Auto Anvil Dupe Meteor Client addon Instructions for GoldenDupes' Plugin
 
 Before you dive into the instructions, ensure you've placed the release jar of this addon into your mods folder where your Meteor Client is installed. This step is necessary for the addon to be recognized and loaded by Meteor Client.
 
-Welcome to the Auto Anvil Dupe Meteor Client addon, a specially designed solution for duplicating items on the Anarchy.CX server within the GoldenDupes' plugin environment! Follow these steps carefully to achieve the best results:
+Welcome to the Auto Anvil Dupe Meteor Client addon, a specially designed solution for duplicating items on the Anarchadia.org server within the GoldenDupes' plugin environment! Follow these steps carefully to achieve the best results:
 
 ## How to Use
 
@@ -21,7 +20,7 @@ Welcome to the Auto Anvil Dupe Meteor Client addon, a specially designed solutio
 
 ## Additional Information
 
-This module is crafted to leverage gameplay mechanics unique to the GoldenDupes plugin and Anarchy.CX server.
+This module is crafted to leverage gameplay mechanics unique to the GoldenDupes plugin and Anarchadia.org server.
 
 ## Decompiling Binary with Recaf
 
@@ -39,4 +38,4 @@ If you're unsure about the legitimacy of the module, below you'll find instructi
 
 ---
 
-Maximize your Anarchy.CX experience with confidence and creativity!
+Maximize your Anarchadia.org experience with confidence and creativity!
