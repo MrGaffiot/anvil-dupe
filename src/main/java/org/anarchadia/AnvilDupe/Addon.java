@@ -1,6 +1,6 @@
-package cx.anarchy.AnvilDupe;
+package org.anarchadia.AnvilDupe;
 
-import cx.anarchy.AnvilDupe.modules.AnvilDupe;
+import org.anarchadia.AnvilDupe.modules.AnvilDupe;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.systems.modules.Category;
@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("AnarchyCX", Items.WATER_BUCKET.getDefaultStack());
+    public static final Category CATEGORY = new Category("Anarchadia", Items.WATER_BUCKET.getDefaultStack());
 
     @Override
     public void onInitialize() {
@@ -23,7 +23,7 @@ public class Addon extends MeteorAddon {
 
     @Override
     public String getPackage() {
-        return "cx.anarchy";
+        return "org.anarchadia";
     }
 
     @Override

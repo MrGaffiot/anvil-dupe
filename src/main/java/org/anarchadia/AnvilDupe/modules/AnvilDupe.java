@@ -1,7 +1,7 @@
-package cx.anarchy.AnvilDupe.modules;
+package org.anarchadia.AnvilDupe.modules;
 
 
-import cx.anarchy.AnvilDupe.Addon;
+import org.anarchadia.AnvilDupe.Addon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.IntSetting;
@@ -48,6 +48,15 @@ public class AnvilDupe extends Module {
         .build()
     );
 
+    private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
+            .name("delay")
+            .description("How many items to dupe before toggling.")
+            .defaultValue(1)
+            .min(1)
+            .sliderMax(20)
+            .build()
+    );
+
     private boolean didDupe = false;
     private int dupedCount = 0;
 
@@ -82,6 +91,7 @@ public class AnvilDupe extends Module {
      */
     @EventHandler
     private void onTick(TickEvent.Pre event) {
+        if(mc.player != null && delay.get() != 0 && mc.player.age % delay.get() != 0) return;
         if (dupedCount >= dupeAmount.get()) {
             info("Duped the desired amount of items, toggling off.");
             toggle();

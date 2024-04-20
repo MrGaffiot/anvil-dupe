@@ -14,7 +14,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "cx.anarchy.AnvilDupe.Addon"
+      "org.anarchadia.AnvilDupe.Addon"
     ]
   },
   "mixins": [
