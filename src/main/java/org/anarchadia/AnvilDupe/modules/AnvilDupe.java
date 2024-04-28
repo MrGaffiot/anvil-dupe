@@ -1,11 +1,14 @@
 package org.anarchadia.AnvilDupe.modules;
 
 
+import meteordevelopment.meteorclient.utils.player.ChatUtils;
+import net.minecraft.nbt.NbtCompound;
 import org.anarchadia.AnvilDupe.Addon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.IntSetting;
 import meteordevelopment.meteorclient.settings.Setting;
+import meteordevelopment.meteorclient.settings.StringSetting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.player.FindItemResult;
@@ -26,6 +29,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import meteordevelopment.meteorclient.utils.player.Rotations;
+
 
 /**
  * Allows automatically duplicating items using the 1.17 anvil dupe, specifically the GoldenDupes version.
@@ -51,6 +56,22 @@ public class AnvilDupe extends Module {
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
             .name("delay")
             .description("How many items to dupe before toggling.")
+            .defaultValue(1)
+            .min(1)
+            .sliderMax(20)
+            .build()
+    );
+
+    private final Setting<String> message = sgGeneral.add(new StringSetting.Builder()
+            .name("messages")
+            .description("Messages to use for spam.")
+            .defaultValue("Just dupe an item using the auto-dupe addon!")
+            .build()
+    );
+
+    private final Setting<Integer> bottleAmount = sgGeneral.add(new IntSetting.Builder()
+            .name("Amount of bottles to throw")
+            .description("How many XP bottles to throw.")
             .defaultValue(1)
             .min(1)
             .sliderMax(20)
@@ -204,10 +225,25 @@ public class AnvilDupe extends Module {
         }
 
         if (mc.player.experienceLevel == 0) {
-            error("Out of XP! Disabling.");
-            mc.player.closeHandledScreen();
-            toggle();
-            return;
+            FindItemResult exp = InvUtils.findInHotbar(Items.EXPERIENCE_BOTTLE);
+            FindItemResult expI = InvUtils.find(Items.EXPERIENCE_BOTTLE);
+
+            if (!exp.found()) return;
+
+            Rotations.rotate(mc.player.getYaw(), 90, () -> {
+                if (exp.getHand() != null) {
+                    for (int i = 0; i < bottleAmount.get(); i++) {
+                        mc.interactionManager.interactItem(mc.player, exp.getHand());
+                    }
+                }
+                else {
+                    InvUtils.swap(exp.slot(), true);
+                    for (int i = 0; i < bottleAmount.get(); i++) {
+                        mc.interactionManager.interactItem(mc.player, exp.getHand());
+                    }
+                    InvUtils.swapBack();
+                }
+            });
         }
 
         if (!mc.player.currentScreenHandler.getCursorStack().isEmpty()) {
@@ -261,6 +297,9 @@ public class AnvilDupe extends Module {
 
         if (didDupe && event.screen == null) {
             info("Dupe succeeded, preparing for next round.");
+            if (!message.get().isEmpty()) {
+                ChatUtils.sendPlayerMsg(message.get());
+            }
             dupedCount += 1;
             didDupe = false;
             currentState = AnvilDupeState.LOOKING_FOR_ANVIL;
