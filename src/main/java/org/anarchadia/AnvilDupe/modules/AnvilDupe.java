@@ -2,7 +2,6 @@ package org.anarchadia.AnvilDupe.modules;
 
 
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
-import net.minecraft.nbt.NbtCompound;
 import org.anarchadia.AnvilDupe.Addon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -29,7 +28,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import meteordevelopment.meteorclient.utils.player.Rotations;
 
 
 /**
@@ -66,15 +64,6 @@ public class AnvilDupe extends Module {
             .name("messages")
             .description("Messages to use for spam.")
             .defaultValue("Just dupe an item using the auto-dupe addon!")
-            .build()
-    );
-
-    private final Setting<Integer> bottleAmount = sgGeneral.add(new IntSetting.Builder()
-            .name("Amount of bottles to throw")
-            .description("How many XP bottles to throw.")
-            .defaultValue(1)
-            .min(1)
-            .sliderMax(20)
             .build()
     );
 
@@ -225,25 +214,10 @@ public class AnvilDupe extends Module {
         }
 
         if (mc.player.experienceLevel == 0) {
-            FindItemResult exp = InvUtils.findInHotbar(Items.EXPERIENCE_BOTTLE);
-            FindItemResult expI = InvUtils.find(Items.EXPERIENCE_BOTTLE);
-
-            if (!exp.found()) return;
-
-            Rotations.rotate(mc.player.getYaw(), 90, () -> {
-                if (exp.getHand() != null) {
-                    for (int i = 0; i < bottleAmount.get(); i++) {
-                        mc.interactionManager.interactItem(mc.player, exp.getHand());
-                    }
-                }
-                else {
-                    InvUtils.swap(exp.slot(), true);
-                    for (int i = 0; i < bottleAmount.get(); i++) {
-                        mc.interactionManager.interactItem(mc.player, exp.getHand());
-                    }
-                    InvUtils.swapBack();
-                }
-            });
+            error("Out of XP! Disabling.");
+            mc.player.closeHandledScreen();
+            toggle();
+            return;
         }
 
         if (!mc.player.currentScreenHandler.getCursorStack().isEmpty()) {

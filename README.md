@@ -15,7 +15,10 @@ Welcome to the Auto Anvil Dupe Meteor Client addon, a specially designed solutio
 3. **Set Duplication Count:**
    - **Input the number of times** you desire to duplicate your selected item. This customization step is crucial for controlling the quantity of your end result.
 
-4. **Activate the Module:**
+4. **Configure the message if needed**
+   - **Set the text box to empty to disable** it will send a message every time you dupe
+
+5. **Activate the Module:**
    - With your preparations complete, **activate the module** to initiate the duplication process. Watch as your inventory expands with duplicated items!
 
 ## Additional Information
