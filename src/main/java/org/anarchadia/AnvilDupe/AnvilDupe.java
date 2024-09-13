@@ -1,10 +1,12 @@
 package org.anarchadia.AnvilDupe.modules;
 
 
+import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import org.anarchadia.AnvilDupe.Addon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
+import meteordevelopment.meteorclient.settings.BoolSetting;
 import meteordevelopment.meteorclient.settings.IntSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.StringSetting;
@@ -74,6 +76,13 @@ public class AnvilDupe extends Module {
             .defaultValue(1)
             .min(1)
             .sliderMax(20)
+            .build()
+    );
+
+    private final Setting<Boolean> antiantispam = sgGeneral.add(new BoolSetting.Builder()
+            .name("Anti-anti-spam")
+            .description("Whether or not to instantly mine blocks under certain conditions.")
+            .defaultValue(true)
             .build()
     );
 
@@ -296,7 +305,7 @@ public class AnvilDupe extends Module {
         if (didDupe && event.screen == null) {
             info("Dupe succeeded, preparing for next round.");
             if (!message.get().isEmpty()) {
-                ChatUtils.sendPlayerMsg(message.get());
+                ChatUtils.sendPlayerMsg(message.get() + String.format("(%03d) ", Utils.random(0, 10000)));
             }
             dupedCount += 1;
             didDupe = false;
